@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Silkscreen', monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  image-rendering: pixelated;
+}
+
+.badge {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: #1f723e;
+  margin-bottom: 2.5rem;
+  display: inline-block;
+}
+
+h1 {
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+h1 .accent {
+  color: #f97316;
+}
+
+.sub {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: #666;
+  max-width: 420px;
+  line-height: 2;
+  letter-spacing: 0.05em;
+}
+
+.links {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.links a, .links button {
+  font-family: 'Silkscreen', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  padding: 0.75em 1.75em;
+  border-radius: 0;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  transition: background 0.1s, color 0.1s;
+}
+
+.btn-primary {
+  background: #f97316;
+  color: #0a0a0a;
+}
+
+.btn-primary:hover {
+  background: #fb923c;
+}
+
+.btn-disabled {
+  background: transparent;
+  border: 2px solid #333 !important;
+  color: #444;
+  cursor: not-allowed !important;
+}
+
+footer {
+  position: fixed;
+  bottom: 1.5rem;
+  font-size: 0.6rem;
+  color: #333;
+  letter-spacing: 0.1em;
+}
