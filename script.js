@@ -19,14 +19,15 @@ requestAnimationFrame(() => {
   badge.style.width      = '100%';
   badge.style.whiteSpace  = 'normal';
   badge.style.wordBreak   = 'break-all';
-  badge.style.maxHeight  = (lineH * 40) + 'px';
+  badge.style.maxHeight  = (lineH * 20) + 'px';
   badge.style.overflow   = 'hidden';
+  badge.style.zIndex     = '-1';
 
   let n = 1;
   function addDigit() {
     badgeNum += Math.floor(Math.random() * 9) + 1;
     badge.textContent = badgePrefix + badgeNum + ' years';
-    const delay = Math.max(16, n < 10 ? 2000 / Math.sqrt(n) : 2000 / n);
+    const delay = Math.max(16, n < 10 ? 2000 / Math.sqrt(n) : 0);
     n++;
     setTimeout(addDigit, delay);
   }
