@@ -154,9 +154,26 @@ body {
 
 .other-inner {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
 }
+
+.spamton-gif {
+  image-rendering: pixelated;
+}
+
+.spamton-bob-a {
+  height: 228px;
+  width: auto;
+}
+
+.spamton-bob-b {
+  height: 144px;
+  width: auto;
+}
+
 
 .other-info {
   text-align: left;
