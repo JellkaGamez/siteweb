@@ -2,6 +2,9 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+
 body {
   background: #0a0a0a;
   color: #e0e0e0;
@@ -199,7 +202,24 @@ h1 .accent {
 footer {
   position: absolute;
   bottom: 1.5rem;
+  left: 1.5rem;
   font-size: 0.6rem;
   color: #333;
   letter-spacing: 0.1em;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #333;
+  font-size: 1.2rem;
+  animation: bounce 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-8px); }
 }
