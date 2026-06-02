@@ -2,6 +2,8 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html, body { overflow-x: hidden; }
+
 ::-webkit-scrollbar { display: none; }
 * { scrollbar-width: none; }
 
@@ -21,6 +23,7 @@ body {
   justify-content: center;
   text-align: center;
   padding: 2rem;
+  overflow: visible;
 }
 
 .game-section {
@@ -137,7 +140,8 @@ body {
 .badge {
   font-size: 0.65rem;
   letter-spacing: 0.15em;
-  color: #1f723e;
+  line-height: 2;
+  color: #0c3b1d;
   margin-bottom: 2.5rem;
   display: inline-block;
 }
