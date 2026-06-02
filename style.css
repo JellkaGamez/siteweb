@@ -126,56 +126,61 @@ body {
   color: #2a2a2a;
 }
 
+.divider-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  background: #0a0a0a;
+}
+
+.divider-title {
+  font-size: clamp(1.25rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #1f723e;
+  line-height: 1.1;
+  text-align: center;
+}
+
 .other-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
   padding: 6rem 2rem;
-  background: #0a0a0a;
-  text-align: center;
+  background: #0d0d0d;
 }
 
-.other-title {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 700;
-  color: #fff;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-  white-space: nowrap;
-}
-
-.other-grid {
+.other-inner {
   display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
 }
 
-.other-card {
-  border: 2px solid #1a1a1a;
-  padding: 1.5rem 2rem;
+.other-info {
   text-align: left;
-  min-width: 220px;
-  max-width: 280px;
+  min-width: 200px;
 }
 
-.other-name {
-  font-size: 0.75rem;
-  color: #888;
-  line-height: 2;
+.other-info h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+  white-space: nowrap;
 }
 
 .other-desc {
-  font-size: 0.65rem;
-  color: #444;
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: #555;
   line-height: 2;
-  margin-top: 0.25rem;
 }
 
 .other-status {
   margin-top: 0.75rem;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   color: #f97316;
   letter-spacing: 0.1em;
 }
