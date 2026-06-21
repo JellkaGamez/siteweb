@@ -1,3 +1,6 @@
+# Private server config and infrastructure notes
+private/
+
 # Art source files
 *.psd
 *.aseprite
@@ -16,3 +19,6 @@ desktop.ini
 
 # Node (if ever added)
 node_modules/
+
+# Spamton MMO (work in progress)
+spamton-mmo/
