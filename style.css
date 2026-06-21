@@ -261,7 +261,7 @@ h1 .accent {
   font-weight: 400;
   cursor: pointer;
   border: none;
-  transition: background 0.1s, color 0.1s;
+  transition: background 0.1s, color 0.1s, box-shadow 0.1s, border-color 0.1s, text-shadow 0.1s;
 }
 
 .btn-primary {
@@ -278,6 +278,52 @@ h1 .accent {
   border: 2px solid #333 !important;
   color: #444;
   cursor: not-allowed !important;
+}
+
+/* Social platform buttons */
+.btn-social {
+  display: inline-block;
+  font-size: 0.84rem !important;
+  padding: 1em 2.5em;
+  border: 1px solid #fff !important;
+}
+
+.btn-github {
+  background: #24292e;
+  color: #fff;
+  border-color: #fff;
+}
+.btn-github:hover { background: #2d333b; }
+
+.btn-bluesky {
+  background: #25c5df;
+  color: #fff;
+}
+.btn-bluesky:hover { background: #1ab3cc; }
+
+.btn-youtube {
+  background: #ff0000;
+  color: #fff;
+}
+.btn-youtube:hover { background: #cc0000; }
+
+.btn-discord {
+  background: #7289da;
+  color: #fff;
+}
+.btn-discord:hover { background: #5b6fb3; }
+
+.btn-tiktok {
+  background: #040404;
+  color: #fff;
+  text-shadow:
+    -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+    -2px -2px 0 #fe2858, 2px 2px 0 #2af0ea;
+  border-color: #fff;
+  box-shadow: -3px -3px 0 #fe2858, 3px 3px 0 #2af0ea;
+}
+.btn-tiktok:hover {
+  background: #111;
 }
 
 footer {
