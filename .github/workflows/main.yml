@@ -1,34 +1,14 @@
-name: Build and Deploy
+name: Deploy to Droplet
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - run: npm install
-
-      - run: node build.js
-
-      - name: Commit generated files
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add devlog.html devlogs/karl/posts/
-          git diff --cached --quiet || git commit -m "Build devlog [skip ci]"
-          git push
-
-      - name: Deploy to Droplet
+      - name: SSH and pull
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DROPLET_IP }}
