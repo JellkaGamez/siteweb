@@ -46,7 +46,7 @@ Now I have the town introduction done, all the way up to the berry fight (the so
 [color=CornflowerBlue]Berry[/color]: So this is [color=yellow]TOWN[/color].<br>
 [color=CornflowerBlue]Berry[/color]: You can find a lot of interesting things here.<br>
 [color=CornflowerBlue]Berry[/color]: Like this news board!<br>
-[color=CornflowerBlue]Berry[/color]: ...[pause=0.5]!<br>
+[color=CornflowerBlue]Berry[/color]: ...!<br>
 [color=CornflowerBlue]Berry[/color]: The gems have been stolen!?<br>
 
 **[CHOICE]** ... What gems? / Sounds really interesting...
