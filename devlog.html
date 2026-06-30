@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devlog — The Walk of Karl | JellkaGamez</title>
+  <link rel="icon" type="image/jpeg" href="favicon.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>
+var DEVLOG_ENTRIES = [{"slug":"intro","title":"The tutorial is mostly finished","tag":"FULL GAME","displayDate":"2026 June 29th","dateMs":1782691200000},{"slug":"intro-cutscene","title":"The intro cutscene is finished","tag":"FULL GAME","displayDate":"2026 June 27th","dateMs":1782518400000},{"slug":"first-post","title":"The Walk of Karl Demo is done!","tag":"DEMO","displayDate":"2026 June 24th","dateMs":1782259200000}];
+</script>
+
+<nav class="devlog-nav">
+  <a href="index.html" class="nav-back">BACK</a>
+  <span class="nav-label">// devlog: The Walk of Karl</span>
+</nav>
+
+<main class="devlog-main">
+  <header class="devlog-header">
+    <p class="game-label">// development log</p>
+    <h1 class="devlog-title">The Walk<br>of <span class="accent">Karl</span></h1>
+  </header>
+
+  <div id="tl-root" class="timeline"></div>
+
+  <div class="devlog-entries">
+    <a class="devlog-row" href="devlogs/karl/posts/intro.html">
+      <span class="row-num">// #003</span>
+      <span class="row-date">2026 June 29th</span>
+      <span class="row-title"><span class="post-tag post-tag-full">FULL GAME</span>The tutorial is mostly finished</span>
+    </a>
+    <a class="devlog-row" href="devlogs/karl/posts/intro-cutscene.html">
+      <span class="row-num">// #002</span>
+      <span class="row-date">2026 June 27th</span>
+      <span class="row-title"><span class="post-tag post-tag-full">FULL GAME</span>The intro cutscene is finished</span>
+    </a>
+    <a class="devlog-row" href="devlogs/karl/posts/first-post.html">
+      <span class="row-num">// #001</span>
+      <span class="row-date">2026 June 24th</span>
+      <span class="row-title"><span class="post-tag post-tag-demo">DEMO</span>The Walk of Karl Demo is done!</span>
+    </a>
+  </div>
+</main>
+
+<script>
+const MONTHS_S = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTHS_F = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+const ZOOMS = [
+  { label: 'LIFETIME', days: null },
+  { label: '1W',  days: 7   },
+  { label: '1M',  days: 30  },
+  { label: '3M',  days: 90  },
+  { label: '6M',  days: 180 },
+  { label: '1Y',  days: 365 },
+];
+
+function todayUtc() {
+  const n = new Date();
+  return Date.UTC(n.getFullYear(), n.getMonth(), n.getDate());
+}
+
+let activeZoom = 'LIFETIME';
+
+function render() {
+  const root = document.getElementById('tl-root');
+  if (!root || !window.DEVLOG_ENTRIES || !DEVLOG_ENTRIES.length) return;
+
+  const today      = todayUtc();
+  const firstEntry = Math.min(...DEVLOG_ENTRIES.map(e => e.dateMs));
+
+  const available = ZOOMS.filter(z =>
+    z.days === null || (today - z.days * 86400000) >= firstEntry
+  );
+
+  if (!available.find(z => z.label === activeZoom)) activeZoom = available[0].label;
+
+  const zoom        = available.find(z => z.label === activeZoom);
+  const winStart    = zoom.days === null ? firstEntry : today - zoom.days * 86400000;
+  const winEnd      = today;
+  const spanDays    = Math.round((winEnd - winStart) / 86400000);
+  const daysMini    = spanDays > 14;
+  const showDayTick = spanDays <= 365;
+
+  function pct(ms) {
+    const span = winEnd - winStart;
+    return span === 0 ? 0 : (ms - winStart) / span * 100;
+  }
+
+  // Zoom buttons
+  const zoomBtns = available.map(z =>
+    `<button class="tl-zoom-btn${z.label === activeZoom ? ' tl-zoom-active' : ''}" data-zoom="${z.label}">${z.label}</button>`
+  ).join('');
+
+  // Ticks
+  const ticks = [];
+  const cur = new Date(winStart);
+  while (cur.getTime() < winEnd) {
+    const ms   = cur.getTime();
+    const left = pct(ms).toFixed(3);
+    const d    = cur.getUTCDate();
+    const mon  = cur.getUTCMonth();
+    const dow  = cur.getUTCDay();
+
+    if (d === 1 && mon === 0) {
+      ticks.push(`<div class="tl-tick tl-year" style="left:${left}%"><span class="tl-tick-lbl">${cur.getUTCFullYear()}</span></div>`);
+    } else if (d === 1) {
+      ticks.push(`<div class="tl-tick tl-month" style="left:${left}%"><span class="tl-tick-lbl">${MONTHS_S[mon]}</span></div>`);
+    } else if (daysMini && dow === 1) {
+      ticks.push(`<div class="tl-tick tl-week" style="left:${left}%"><span class="tl-tick-lbl">${d}</span></div>`);
+    } else if (showDayTick) {
+      ticks.push(`<div class="tl-tick ${daysMini ? 'tl-day-mini' : 'tl-day'}" style="left:${left}%">${daysMini ? '' : `<span class="tl-tick-lbl">${d}</span>`}</div>`);
+    }
+
+    cur.setUTCDate(cur.getUTCDate() + 1);
+  }
+
+  // Entry markers
+  const markers = DEVLOG_ENTRIES
+    .filter(e => e.dateMs >= winStart && e.dateMs <= winEnd)
+    .map(e => {
+      const left = pct(e.dateMs).toFixed(2);
+      return `<a class="tl-marker" href="devlogs/karl/posts/${e.slug}.html" style="left:${left}%">
+        <div class="tl-dot${e.tag === 'DEMO' ? ' tl-dot-demo' : ''}"></div>
+        <div class="tl-popup">
+          <span class="tl-pop-title">${e.title}</span>
+          <span class="tl-pop-date">${e.displayDate}</span>
+        </div>
+      </a>`;
+    });
+
+  root.innerHTML = `
+    <div class="tl-header">
+      <p class="game-label">// timeline</p>
+      <div class="tl-zooms">${zoomBtns}</div>
+    </div>
+    <div class="tl-track">
+      ${ticks.join('')}
+      ${markers.join('')}
+      <div class="tl-now">
+        <div class="tl-dot tl-dot-now"></div>
+        <span class="tl-now-label">TODAY</span>
+      </div>
+    </div>`;
+
+  root.querySelectorAll('.tl-zoom-btn').forEach(btn =>
+    btn.addEventListener('click', () => { activeZoom = btn.dataset.zoom; render(); })
+  );
+}
+
+document.addEventListener('DOMContentLoaded', render);
+
+</script>
+</body>
+</html>
